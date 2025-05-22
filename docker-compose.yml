@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: laravel-app
+    container_name: pontoeletronico-app
+    working_dir: /var/www
+    volumes:
+      - ./app/:/var/www
+    ports:
+      - "8000:8000"
+    command: php artisan serve --host=0.0.0.0
+    depends_on:
+      - db
+    networks:
+      - laravel
+
+  db:
+    image: mysql:latest
+    container_name: pontoeletronico-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pontoeletronico
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    command: --default-storage-engine=INNODB
+    networks:
+      - laravel
+
+networks:
+  laravel:
+
+volumes:
+  db_data:

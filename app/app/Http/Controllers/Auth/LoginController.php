@@ -26,7 +26,12 @@ class LoginController extends Controller
         
         if ($usuario && Hash::check($request->senha, $usuario->senha)) {
             Auth::login($usuario);
-            return redirect()->intended('dashboard');
+
+             if ($usuario->cargo === 'funcionario') {
+                return redirect()->route('ponto.index');
+            }
+
+            return redirect()->intended('dashboard'); 
         }
         dd('Usuário ou senha inválido');
         return back()->withErrors(['cpf' => 'CPF ou senha inválidos']);

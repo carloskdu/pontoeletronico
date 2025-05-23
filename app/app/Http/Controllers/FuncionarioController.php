@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use App\Rules\CpfValido;
 
 class FuncionarioController extends Controller
 {
@@ -28,16 +29,7 @@ class FuncionarioController extends Controller
     {
         $request->validate([
             'nome_completo' => 'required|string|max:255',
-            'cpf' => [
-                    'required',
-                    'string',
-                    'unique:usuarios,cpf',
-                    function ($attribute, $value, $fail) {
-                        if (!validarCpf($value)) {
-                            $fail('O CPF informado é inválido.');
-                        }
-                    },
-                ],
+            'cpf' => ['required', 'digits:11', new CpfValido],
             'email' => 'required|email|unique:usuarios,email',
             'senha' => 'required|min:6',
             'data_nascimento' => 'required|date',

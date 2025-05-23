@@ -39,15 +39,6 @@
 
 <body>
     <h1>Novo Funcionário</h1>
-    @if ($errors->any())
-        <div style="color: red;">
-            <ul>
-                @foreach ($errors->all() as $erro)
-                    <li>{{ $erro }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     <form method="POST" action="{{ route('funcionarios.store') }}">
         @csrf
 
@@ -130,6 +121,35 @@
     <script>
         document.getElementById('cpf').addEventListener('input', function(e) {
             this.value = this.value.replace(/\D/g, ''); // Remove tudo que não for número
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const cepInput = document.querySelector('input[name="cep"]');
+
+            cepInput.addEventListener('blur', function() {
+                const cep = cepInput.value.replace(/\D/g, '');
+
+                if (cep.length !== 8) return;
+
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.erro) {
+                            alert('CEP não encontrado.');
+                            return;
+                        }
+
+                        document.querySelector('input[name="logradouro"]').value = data.logradouro ||
+                            '';
+                        document.querySelector('input[name="bairro"]').value = data.bairro || '';
+                        document.querySelector('input[name="cidade"]').value = data.localidade || '';
+                        document.querySelector('input[name="estado"]').value = data.uf || '';
+                    })
+                    .catch(() => {
+                        alert('Erro ao buscar o endereço.');
+                    });
+            });
         });
     </script>
 </body>

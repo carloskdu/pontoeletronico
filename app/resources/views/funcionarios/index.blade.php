@@ -47,9 +47,15 @@
 <body>
     <div class="top-bar">
         <h1>Funcionários</h1>
+        @if (Auth::check())
+            <p>Bem-vindo, {{ Auth::user()->nome_completo }}</p>
+        @endif
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
             @csrf
         </form>
+        <a href="{{ route('registros-ponto.indexAdmin') }}"
+            style="background-color: #4CAF50; color: white; padding: 30px 5px; text-decoration: none; border-radius: 4px; border: none;">+
+            Relatorio</a>
         <a href="{{ route('funcionarios.create') }}"
             style="background-color: #007bff; color: white; padding: 30px 5px; text-decoration: none; border-radius: 4px; border: none;">+
             Novo Funcionário</a>

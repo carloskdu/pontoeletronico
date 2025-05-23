@@ -88,7 +88,9 @@
 <body>
     <div class="container">
         <h1>Registros de Ponto</h1>
-
+        @if (Auth::check())
+            <p>Bem-vindo, {{ Auth::user()->nome_completo }}</p>
+        @endif
         <form method="GET" action="{{ route('registros-ponto.indexAdmin') }}">
             <div>
                 <label for="data_inicio">Data Início:</label>
@@ -105,7 +107,10 @@
                 <a href="{{ route('registros-ponto.indexAdmin') }}" class="button">Limpar</a>
             </div>
         </form>
-
+        <a href="{{ route('funcionarios.index') }}"
+            style="background-color: #4CAF50; color: white; padding: 10px; text-decoration: none; border-radius: 4px; border: none;">
+            Voltar
+        </a>
         <table>
             <thead>
                 <tr>

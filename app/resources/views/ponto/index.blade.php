@@ -107,6 +107,9 @@
 <body>
     <header>
         <h1>Registro de Ponto</h1>
+        @if (Auth::check())
+            <p>Bem-vindo, {{ Auth::user()->nome_completo }}</p>
+        @endif
         <a href="{{ route('logout') }}" class="logout"
             onclick="event.preventDefault();document.getElementById('logout-form').submit();">
             Sair

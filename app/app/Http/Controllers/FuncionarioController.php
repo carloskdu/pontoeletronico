@@ -112,7 +112,7 @@ class FuncionarioController extends Controller
     private function authorizeFuncionario(Usuario $funcionario)
     {
         if ($funcionario->administrador_id !== Auth::id()) {
-            abort(403);
+            abort(403, 'Você não tem permissão para editar este funcionário.');
         }
     }
 }

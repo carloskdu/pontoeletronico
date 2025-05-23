@@ -31,7 +31,7 @@ class LoginController extends Controller
                 return redirect()->route('ponto.index');
             }
 
-            return redirect()->intended('dashboard'); 
+            return redirect()->intended('funcionarios'); 
         }
         dd('Usuário ou senha inválido');
         return back()->withErrors(['cpf' => 'CPF ou senha inválidos']);

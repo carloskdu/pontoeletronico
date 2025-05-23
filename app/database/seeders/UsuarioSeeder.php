@@ -15,8 +15,8 @@ class UsuarioSeeder extends Seeder
     public function run(): void
     {
         Usuario::create([
-            'nome_completo' => 'Administrador',
-            'cpf' => '12345678900',
+            'nome_completo' => 'Carlos Eduardo Alves',
+            'cpf' => '19351367045',
             'email' => 'admin@example.com',
             'senha' => Hash::make('123456'),
             'cargo' => 'administrador',
@@ -27,8 +27,8 @@ class UsuarioSeeder extends Seeder
         ]);
 
         Usuario::create([
-            'nome_completo' => 'Funcionário',
-            'cpf' => '00987654321',
+            'nome_completo' => 'Jose da Silva',
+            'cpf' => '66655023092',
             'email' => 'funcionario@example.com',
             'senha' => Hash::make('654321'),
             'cargo' => 'funcionario',

@@ -14,7 +14,7 @@ class Usuario extends Authenticatable
 
     protected $fillable = [
         'nome_completo', 'cpf', 'email', 'senha', 'cargo', 'data_nascimento',
-        'cep', 'logradouro', 'complemento', 'bairro', 'cidade', 'estado',
+        'cep', 'logradouro', 'complemento', 'bairro', 'cidade', 'estado', 'administrador_id'
     ];
 
     protected $hidden = ['senha'];
@@ -22,5 +22,20 @@ class Usuario extends Authenticatable
     public function getAuthPassword()
     {
         return $this->senha;
+    }
+
+public function administrador()
+    {
+        return $this->belongsTo(Usuario::class, 'administrador_id');
+    }
+
+    public function funcionarios()
+    {
+        return $this->hasMany(Usuario::class, 'administrador_id');
+    }
+
+    public function registrosPonto()
+    {
+        return $this->hasMany(RegistroPonto::class, 'usuario_id');
     }
 }

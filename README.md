@@ -7,16 +7,12 @@ Contato: carloskdu@itepbrasil.net
 ## Sobre o Projeto
 
 1. O Projeto foi utilizando Docker para aproveitar a dinâmica da escalabilidade, e praticidade simulação do Ambiente;  
-   ```bash
-  docker-compose up -d --build
-  ```
+   ```bash docker-compose up -d --build
 
 2. Foi Utilizado projeto laravel simples com blade;
 
 3. Foi criado Seeders para usuários iniciais;  
-   ```bash
-    docker container exec pontoeletronico-app php artisan db:seed --class=UsuarioSeeder
-  ```
+   ```bash docker container exec pontoeletronico-app php artisan db:seed --class=UsuarioSeeder
   Admin: 19351367045 - Pwd: 123456
   Func: 66655023092 - Pwd: 654321
 
@@ -32,5 +28,4 @@ Contato: carloskdu@itepbrasil.net
 
 9. Apesar de não estar no escopo da tarefa, foi implementado um teste unitário simples  
    ```bash
-    docker container exec pontoeletronico-app php artisan test`
-  ```
+    docker container exec pontoeletronico-app php artisan test

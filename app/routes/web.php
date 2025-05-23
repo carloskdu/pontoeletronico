@@ -26,6 +26,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('funcionarios', FuncionarioController::class)->except(['show']);
 
     // Tela para o administrador ver pontos com filtro
-    Route::get('/registros-ponto', [RegistroPontoController::class, 'indexAdmin'])->name('registros-ponto.indexAdmin');
+    Route::get('/registros-ponto', [RegistroPontoController::class, 'indexAdminSemEloquent2'])->name('registros-ponto.indexAdmin');
 
 });

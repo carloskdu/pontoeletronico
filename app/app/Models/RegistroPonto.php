@@ -17,10 +17,9 @@ class RegistroPonto extends Model
     protected $casts = [
         'registrado_em' => 'datetime', 
     ];
-
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(Usuario::class, 'usuario_id');
     }
 
     public $timestamps = true;
